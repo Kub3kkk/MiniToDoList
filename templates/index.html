@@ -13,7 +13,11 @@
     </form>
     <br>
     <p>List:</p>
-    <p>{{note}}</p>
+    <ul>
+        {% for item in note %}
+            <li>{{item}}</li>
+        {% endfor %}
+    </ul>
 
 </body>
 </html>
