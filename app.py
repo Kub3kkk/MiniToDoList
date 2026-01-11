@@ -7,10 +7,14 @@ notes = []
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('index.html')
-    elif request.method == 'POST':
-        notes.append(request.form.get('noteadd'))
         return render_template('index.html', note=notes)
+    elif request.method == 'POST':
+        if request.form.get('_method') == 'DELETE':
+            notes.clear()
+            return render_template('index.html', note=notes)
+        else:
+            notes.append(request.form.get('noteadd'))
+            return render_template('index.html', note=notes)
     else:
         return 'failiure'
 if __name__ == '__main__':
